@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuck Norris Jokes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    .joke-container {
+      margin-top: 20px;
+    }
+    #joke-text {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #get-joke-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chuck Norris Jokes</h1>
+  <div class="joke-container">
+    <p id="joke-text">Loading joke...</p>
+    <button id="get-joke-btn">Get Joke</button>
+  </div>
+
+  <div class="image-container">
+    <img src="chuck-norris.jpeg" alt="Chuck Norris" width="300" height="300">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const jokeText = document.getElementById('joke-text');
+    const getJokeBtn = document.getElementById('get-joke-btn');
+
+    async function fetchJoke() {
+      try {
+        const response = await axios.get('http:localhost:3000/joke');
+        const data = response.data;
+        jokeText.textContent = data.joke;
+      } catch (err) {
+        jokeText.textContent = 'Failed to fetch joke';
+      }
+    }
+
+    getJokeBtn.addEventListener('click', fetchJoke);
+    fetchJoke();
+  </script>
+</body>
+</html>
