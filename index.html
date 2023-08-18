@@ -49,7 +49,7 @@
 
     async function fetchJoke() {
       try {
-        const response = await axios.get('http:localhost:3000/joke');
+        const response = await axios.get('http://ChuckNorrisLoadBalancer-243845120.eu-central-1.elb.amazonaws.com/joke');
         const data = response.data;
         jokeText.textContent = data.joke;
       } catch (err) {
